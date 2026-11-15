@@ -1,0 +1,1267 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>KSU Tri Guna Bhakti — Preview Statis</title>
+<meta name="description" content="Pratinjau statis website KSU Tri Guna Bhakti. Bukan situs produksi." />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#145C43; --secondary:#23845B; --accent:#D5AA54;
+    --bg:#F7F9F7; --text:#25312B; --white:#fff;
+    --border:rgba(37,49,43,.08);
+    --radius:12px; --radius-lg:20px;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.04);
+    --shadow:0 4px 12px rgba(20,92,67,.06);
+    --shadow-lg:0 12px 32px rgba(20,92,67,.10);
+    --container:1120px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{line-height:1.25; margin:0 0 .5rem; color:var(--text)}
+  h1{font-size:clamp(1.75rem,3.5vw,2.75rem); font-weight:600; letter-spacing:-.02em}
+  h2{font-size:clamp(1.35rem,2.2vw,1.875rem); font-weight:600; letter-spacing:-.01em}
+  h3{font-size:1.05rem; font-weight:600}
+  p{margin:0 0 1rem}
+  a{color:var(--primary); text-decoration:none}
+  a:hover{color:var(--secondary)}
+  img{max-width:100%; display:block}
+  button{font-family:inherit; cursor:pointer}
+  .container{max-width:var(--container); margin:0 auto; padding:0 1rem}
+  @media (min-width:640px){ .container{padding:0 1.5rem} }
+
+  .preview-banner{
+    background:#25312B; color:#fff; font-size:.78rem;
+    padding:.55rem 1rem; text-align:center; line-height:1.4;
+  }
+  .preview-banner strong{color:var(--accent)}
+  .preview-banner span{opacity:.85}
+
+  .site-header{
+    position:sticky; top:0; z-index:40;
+    background:rgba(255,255,255,.94); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:1rem; height:64px;
+  }
+  .brand{display:flex; align-items:center; gap:.6rem; color:var(--primary); font-weight:600; font-size:.9rem}
+  .brand svg{flex-shrink:0}
+  .nav-desktop{display:none; gap:.15rem}
+  @media (min-width:1024px){ .nav-desktop{display:flex} }
+  .nav-desktop a{
+    padding:.5rem .8rem; border-radius:8px; font-size:.875rem; font-weight:500;
+    color:rgba(37,49,43,.72); transition:background .15s,color .15s;
+  }
+  .nav-desktop a:hover{background:rgba(20,92,67,.05); color:var(--primary)}
+  .nav-desktop a.active{color:var(--primary)}
+  .header-ctas{display:none; gap:.5rem; align-items:center}
+  @media (min-width:1024px){ .header-ctas{display:flex} }
+
+  .menu-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:40px; height:40px; border:1px solid var(--border);
+    background:#fff; border-radius:8px;
+  }
+  @media (min-width:1024px){ .menu-btn{display:none} }
+
+  .mobile-menu{display:none; border-top:1px solid var(--border); background:#fff; padding:.75rem 1rem}
+  .mobile-menu.open{display:block}
+  .mobile-menu a{
+    display:block; padding:.6rem .75rem; border-radius:8px;
+    font-size:.9rem; color:rgba(37,49,43,.8);
+  }
+  .mobile-menu a:hover, .mobile-menu a.active{background:rgba(20,92,67,.05); color:var(--primary)}
+  .mobile-menu .mobile-ctas{display:grid; grid-template-columns:1fr 1fr; gap:.5rem; margin-top:.5rem}
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
+    padding:.75rem 1.25rem; border-radius:12px; font-size:.875rem; font-weight:500;
+    border:1px solid transparent; transition:all .15s; white-space:nowrap;
+  }
+  .btn-primary{background:var(--primary); color:#fff}
+  .btn-primary:hover{background:var(--secondary); color:#fff}
+  .btn-outline{border-color:rgba(20,92,67,.2); background:#fff; color:var(--primary)}
+  .btn-outline:hover{border-color:rgba(20,92,67,.45); color:var(--primary)}
+  .btn-accent{background:var(--accent); color:var(--text); font-weight:600}
+  .btn-accent:hover{filter:brightness(1.05); color:var(--text)}
+  .btn-sm{padding:.5rem .8rem; font-size:.78rem; border-radius:8px}
+  .btn-ghost{
+    border-color:rgba(255,255,255,.3); color:#fff; background:transparent;
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,.1); color:#fff}
+
+  .hero{background:linear-gradient(180deg, rgba(20,92,67,.04) 0%, transparent 100%); padding:2.5rem 0 3rem}
+  @media (min-width:1024px){ .hero{padding:4rem 0 5rem} }
+  .hero-grid{display:grid; gap:2rem; align-items:center}
+  @media (min-width:1024px){ .hero-grid{grid-template-columns:1.1fr 1fr; gap:3rem} }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.4rem .85rem; background:rgba(20,92,67,.06);
+    color:var(--primary); border-radius:999px; font-size:.75rem; font-weight:500;
+  }
+  .hero-eyebrow::before{
+    content:''; display:block; width:6px; height:6px; border-radius:50%; background:var(--accent);
+  }
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.5rem}
+  .hero-support{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:.65rem; margin-top:2rem;
+  }
+  @media (min-width:640px){ .hero-support{grid-template-columns:repeat(4,1fr)} }
+  .hero-support > div{
+    padding:.75rem; background:#fff; border:1px solid var(--border); border-radius:10px;
+  }
+  .hero-support dt{font-size:.72rem; font-weight:600; color:var(--primary); margin-bottom:.15rem}
+  .hero-support dd{margin:0; font-size:.72rem; line-height:1.4; color:rgba(37,49,43,.6)}
+  .hero-illustration{order:-1}
+  @media (min-width:1024px){ .hero-illustration{order:0} }
+
+  .section{padding:3rem 0}
+  @media (min-width:640px){ .section{padding:4rem 0} }
+  .section-alt{background:#fff}
+  .section-head{display:flex; flex-direction:column; gap:.75rem; margin-bottom:1.75rem}
+  @media (min-width:640px){ .section-head{flex-direction:row; align-items:end; justify-content:space-between} }
+  .section-head p{margin:.4rem 0 0; max-width:640px; color:rgba(37,49,43,.65); font-size:.9rem}
+  .section-link{font-size:.875rem; font-weight:500; color:var(--primary); white-space:nowrap}
+  .section-link:hover{color:var(--secondary)}
+
+  .grid-3{display:grid; gap:1.15rem}
+  @media (min-width:640px){ .grid-3{grid-template-columns:repeat(2,1fr)} }
+  @media (min-width:1024px){ .grid-3{grid-template-columns:repeat(3,1fr)} }
+  .grid-4{display:grid; gap:1rem}
+  @media (min-width:640px){ .grid-4{grid-template-columns:repeat(2,1fr)} }
+  @media (min-width:1024px){ .grid-4{grid-template-columns:repeat(4,1fr)} }
+
+  .card{
+    background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:1.5rem; box-shadow:var(--shadow-sm);
+    display:flex; flex-direction:column; transition:all .2s;
+  }
+  .card:hover{border-color:rgba(20,92,67,.2); box-shadow:var(--shadow)}
+  .card .chip{
+    display:inline-flex; align-self:flex-start;
+    padding:.25rem .65rem; border-radius:999px; font-size:.7rem; font-weight:500;
+    background:rgba(20,92,67,.06); color:var(--primary);
+  }
+  .card .highlight{
+    display:inline-flex; padding:.25rem .65rem; border-radius:999px;
+    font-size:.7rem; font-weight:600; background:rgba(213,170,84,.16); color:var(--primary);
+  }
+  .card-head{display:flex; justify-content:space-between; align-items:flex-start; gap:.5rem; margin-bottom:1rem}
+  .card-title{font-size:1.1rem; font-weight:600; color:var(--text); margin-bottom:.5rem}
+  .card-desc{font-size:.875rem; color:rgba(37,49,43,.68); line-height:1.55; flex-grow:1}
+  .card-features{
+    list-style:none; padding:0; margin:1rem 0; font-size:.83rem;
+    color:rgba(37,49,43,.75);
+  }
+  .card-features li{display:flex; gap:.5rem; padding:.2rem 0; line-height:1.5}
+  .card-features li::before{
+    content:''; flex-shrink:0; width:5px; height:5px; border-radius:50%;
+    background:var(--secondary); margin-top:.55rem;
+  }
+  .card-actions{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:auto; padding-top:1rem}
+
+  .value-card{
+    background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:1.35rem;
+  }
+  .value-icon{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:36px; height:36px; border-radius:10px;
+    background:rgba(20,92,67,.1); color:var(--primary); margin-bottom:.85rem;
+  }
+  .value-card h3{font-size:.92rem; margin-bottom:.35rem}
+  .value-card p{font-size:.82rem; color:rgba(37,49,43,.65); margin:0}
+
+  .empty-state{
+    background:#fff; border:1px dashed var(--border); border-radius:var(--radius-lg);
+    padding:1.5rem; font-size:.875rem; color:rgba(37,49,43,.6);
+  }
+  .empty-state strong{color:var(--text)}
+
+  .final-cta{
+    background:var(--primary); color:#fff; border-radius:24px;
+    padding:2.25rem 1.75rem;
+  }
+  @media (min-width:640px){ .final-cta{padding:3rem 2.5rem} }
+  .final-cta h2{color:#fff; max-width:640px}
+  .final-cta .hero-ctas{margin-top:1.5rem}
+
+  .site-footer{background:#fff; border-top:1px solid var(--border); margin-top:3rem}
+  .footer-grid{
+    display:grid; gap:2rem; padding:2.5rem 0;
+    grid-template-columns:1fr;
+  }
+  @media (min-width:768px){ .footer-grid{grid-template-columns:repeat(4,1fr)} }
+  .footer-grid h3{font-size:.85rem; color:var(--text); margin-bottom:.75rem}
+  .footer-grid ul{list-style:none; padding:0; margin:0; font-size:.83rem; color:rgba(37,49,43,.68)}
+  .footer-grid ul li{padding:.2rem 0}
+  .footer-grid ul a{color:rgba(37,49,43,.68)}
+  .footer-grid ul a:hover{color:var(--primary)}
+  .footer-address{font-style:normal; font-size:.83rem; color:rgba(37,49,43,.68); line-height:1.55; margin-bottom:.75rem}
+  .footer-hours{list-style:none; padding:0; margin:0; font-size:.82rem; color:rgba(37,49,43,.68)}
+  .footer-hours li{display:flex; justify-content:space-between; gap:.5rem; padding:.15rem 0}
+  .footer-bottom{border-top:1px solid var(--border); padding:1.15rem 0; font-size:.75rem; color:rgba(37,49,43,.55); text-align:center}
+  @media (min-width:640px){ .footer-bottom{display:flex; justify-content:space-between; text-align:left} }
+
+  .breadcrumbs{font-size:.75rem; color:rgba(37,49,43,.55); margin-bottom:1rem}
+  .breadcrumbs a{color:rgba(37,49,43,.7)}
+  .breadcrumbs a:hover{color:var(--primary)}
+  .breadcrumbs span{margin:0 .35rem}
+
+  .faq-list{
+    background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .faq-item{border-bottom:1px solid var(--border)}
+  .faq-item:last-child{border-bottom:0}
+  .faq-item summary{
+    display:flex; justify-content:space-between; align-items:center; gap:1rem;
+    padding:1rem 1.25rem; cursor:pointer; font-size:.88rem; font-weight:500;
+    color:var(--text); list-style:none; user-select:none;
+  }
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{
+    content:'+'; font-size:1.1rem; color:var(--primary); transition:transform .2s;
+  }
+  .faq-item[open] summary::after{transform:rotate(45deg)}
+  .faq-answer{
+    padding:0 1.25rem 1.1rem; font-size:.85rem;
+    color:rgba(37,49,43,.7); line-height:1.6;
+  }
+
+  .info-block{
+    background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:1.35rem;
+  }
+  .info-block h3{font-size:.85rem; color:var(--primary); margin-bottom:.65rem}
+  .info-block p, .info-block address{
+    font-size:.875rem; color:rgba(37,49,43,.75);
+    font-style:normal; line-height:1.6; margin:0;
+  }
+  .info-block .hours{margin-top:.75rem}
+  .info-block .hours div{display:flex; justify-content:space-between; padding:.1rem 0; font-size:.85rem; color:rgba(37,49,43,.75)}
+  .info-block .hours div span:first-child{text-transform:capitalize}
+
+  .disclaimer{
+    border:1px solid rgba(213,170,84,.3); background:rgba(213,170,84,.06);
+    padding:1rem; border-radius:12px; font-size:.8rem;
+    line-height:1.55; color:rgba(37,49,43,.7); margin-top:1.5rem;
+  }
+
+  .form{
+    background:#fff; border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:1.5rem; margin-top:1.5rem;
+  }
+  @media (min-width:640px){ .form{padding:2rem} }
+  .form-group{margin-bottom:1rem}
+  .form-group label{
+    display:block; font-size:.85rem; font-weight:500;
+    color:var(--text); margin-bottom:.35rem;
+  }
+  .form-group label .req{color:#c0392b}
+  .form-group input,
+  .form-group select,
+  .form-group textarea{
+    width:100%; padding:.7rem .85rem; border:1px solid rgba(37,49,43,.14);
+    border-radius:10px; font-family:inherit; font-size:.875rem;
+    color:var(--text); background:#fff; outline:none;
+    transition:border-color .15s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus{border-color:var(--primary)}
+  .form-row{display:grid; gap:1rem}
+  @media (min-width:640px){ .form-row.two{grid-template-columns:1fr 1fr} }
+  .form-check{
+    display:flex; gap:.65rem; font-size:.83rem; color:rgba(37,49,43,.75);
+    line-height:1.55; margin:1rem 0;
+  }
+  .form-check input{margin-top:.2rem; accent-color:var(--primary)}
+  .form-hint{font-size:.75rem; color:rgba(37,49,43,.55); margin-top:.3rem}
+  .form-error{
+    background:#fef2f2; color:#991b1b; padding:.7rem 1rem;
+    border-radius:8px; font-size:.83rem; margin-bottom:1rem; display:none;
+  }
+  .form-success{
+    background:#f0fdf4; color:#166534; padding:1.25rem;
+    border-radius:12px; border:1px solid #bbf7d0;
+  }
+  .form-success h3{color:#166534; margin-bottom:.5rem}
+  .form-success .code{
+    font-family:monospace; font-size:1.05rem; font-weight:600;
+    background:#fff; padding:.35rem .65rem; border-radius:6px;
+    display:inline-block; margin-top:.5rem; color:#166534;
+    border:1px solid #bbf7d0;
+  }
+  .form-success p{margin:.5rem 0; color:#166534; font-size:.875rem}
+
+  .product-detail-chips{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:.75rem}
+  .product-detail-chips .chip{
+    display:inline-flex; padding:.28rem .7rem; border-radius:999px;
+    font-size:.72rem; font-weight:500;
+    background:rgba(20,92,67,.06); color:var(--primary);
+  }
+  .product-detail-chips .highlight{
+    display:inline-flex; padding:.28rem .7rem; border-radius:999px;
+    font-size:.72rem; font-weight:600;
+    background:rgba(213,170,84,.16); color:var(--primary);
+  }
+
+  .org-tree{margin-top:1rem}
+  .org-node{
+    background:#fff; border:1px solid var(--border); border-radius:12px;
+    padding:.85rem 1rem; margin-bottom:.5rem;
+  }
+  .org-node .title{font-size:.88rem; font-weight:600; color:var(--text)}
+  .org-node .name{font-size:.78rem; color:rgba(37,49,43,.55); margin-top:.15rem}
+  .org-children{padding-left:1.25rem; border-left:2px solid rgba(20,92,67,.15); margin-top:.35rem}
+
+  .page[hidden]{display:none}
+  .page{min-height:calc(100vh - 180px)}
+  .mt-0{margin-top:0}
+  .mt-4{margin-top:1rem}
+  .mt-6{margin-top:1.5rem}
+  .mt-8{margin-top:2rem}
+  .max-w-3xl{max-width:48rem; margin-left:auto; margin-right:auto}
+  .max-w-4xl{max-width:56rem; margin-left:auto; margin-right:auto}
+  .prose{font-size:.9rem; color:rgba(37,49,43,.8); line-height:1.7}
+  .prose h2{font-size:1.05rem; margin-top:1.5rem; margin-bottom:.5rem}
+  .prose p{margin-bottom:.85rem}
+  .prose ol, .prose ul{padding-left:1.25rem; margin-bottom:1rem}
+  .prose li{margin-bottom:.3rem}
+  .prose strong{color:var(--text)}
+
+  .skip-link{
+    position:absolute; left:-999px; top:0; background:var(--primary); color:#fff;
+    padding:.5rem 1rem; border-radius:0 0 8px 0;
+  }
+  .skip-link:focus{left:0; top:0; z-index:100}
+
+  .wa-placeholder{
+    font-size:.75rem; color:rgba(37,49,43,.55); font-style:italic;
+    margin-top:.5rem; padding:.4rem .6rem;
+    background:rgba(20,92,67,.03); border-radius:6px;
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Lewati ke konten utama</a>
+
+<div class="preview-banner">
+  <strong>PREVIEW STATIS</strong> — <span>Ini adalah pratinjau desain &amp; konten. Belum terhubung ke database, CMS, atau nomor WhatsApp resmi. Bukan situs produksi. Data pada halaman ini tidak disimpan.</span>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#beranda" class="brand" aria-label="KSU Tri Guna Bhakti">
+      <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="19" fill="#145C43"/>
+        <circle cx="20" cy="20" r="13.5" fill="none" stroke="#D5AA54" stroke-width="1.6"/>
+        <path d="M13 26c0-4 3-7 7-7s7 3 7 7" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="20" cy="15" r="3.2" fill="#fff"/>
+      </svg>
+      <span>KSU Tri Guna Bhakti</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navigasi utama">
+      <a href="#beranda" data-nav="beranda">Beranda</a>
+      <a href="#produk" data-nav="produk">Produk</a>
+      <a href="#tentang" data-nav="tentang">Tentang Kami</a>
+      <a href="#berita" data-nav="berita">Berita</a>
+      <a href="#faq" data-nav="faq">FAQ</a>
+      <a href="#kontak" data-nav="kontak">Kontak</a>
+    </nav>
+
+    <div class="header-ctas">
+      <a href="#kontak" class="btn btn-outline btn-sm">Hubungi Kami</a>
+      <a href="#daftar" class="btn btn-primary btn-sm">Daftar Sekarang</a>
+    </div>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="#25312B" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#beranda" data-nav="beranda">Beranda</a>
+    <a href="#produk" data-nav="produk">Produk</a>
+    <a href="#tentang" data-nav="tentang">Tentang Kami</a>
+    <a href="#berita" data-nav="berita">Berita</a>
+    <a href="#faq" data-nav="faq">FAQ</a>
+    <a href="#kontak" data-nav="kontak">Kontak</a>
+    <div class="mobile-ctas">
+      <a href="#kontak" class="btn btn-outline btn-sm">Hubungi Kami</a>
+      <a href="#daftar" class="btn btn-primary btn-sm">Daftar Sekarang</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="page" id="page-beranda">
+  <div class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-eyebrow">Koperasi Simpan Pinjam · Blitar</span>
+        <h1 style="margin-top:1rem">Solusi Simpanan dan Pinjaman untuk Kesejahteraan Bersama</h1>
+        <p style="margin-top:1rem; max-width:36rem; font-size:1rem; color:rgba(37,49,43,.7)">
+          KSU Tri Guna Bhakti hadir sebagai mitra keuangan masyarakat melalui layanan simpanan dan pinjaman yang mudah diakses, transparan, dan mengutamakan kebersamaan.
+        </p>
+        <div class="hero-ctas">
+          <a href="#produk" class="btn btn-primary">Lihat Produk Kami</a>
+          <a href="#daftar" class="btn btn-outline">Daftar Sekarang</a>
+        </div>
+        <dl class="hero-support">
+          <div><dt>Berbasis di Blitar</dt><dd>Melayani masyarakat Kota Blitar dan sekitarnya.</dd></div>
+          <div><dt>Produk Simpanan</dt><dd>Pilihan simpanan untuk kebutuhan finansial Anda.</dd></div>
+          <div><dt>Solusi Pinjaman</dt><dd>Pinjaman umum dan khusus sesuai ketentuan koperasi.</dd></div>
+          <div><dt>Semangat Kebersamaan</dt><dd>Dibangun di atas asas gotong royong anggota.</dd></div>
+        </dl>
+      </div>
+      <div class="hero-illustration">
+        <svg viewBox="0 0 480 360" role="img" aria-label="Ilustrasi pertumbuhan keuangan dan kebersamaan anggota koperasi" style="width:100%; height:auto">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#145C43" stop-opacity=".95"/>
+              <stop offset="1" stop-color="#23845B" stop-opacity=".85"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#D5AA54" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#D5AA54" stop-opacity=".4"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="480" height="360" rx="24" fill="#F7F9F7"/>
+          <circle cx="360" cy="90" r="70" fill="url(#g2)" opacity=".55"/>
+          <circle cx="90" cy="300" r="90" fill="url(#g1)" opacity=".08"/>
+          <g transform="translate(60 90)">
+            <rect x="0" y="120" width="60" height="90" rx="10" fill="url(#g1)"/>
+            <rect x="80" y="80" width="60" height="130" rx="10" fill="url(#g1)" opacity=".9"/>
+            <rect x="160" y="40" width="60" height="170" rx="10" fill="url(#g1)" opacity=".8"/>
+            <rect x="240" y="10" width="60" height="200" rx="10" fill="#23845B" opacity=".55"/>
+            <path d="M30 110 L110 70 L190 30 L270 0" fill="none" stroke="#D5AA54" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="30" cy="110" r="5" fill="#D5AA54"/>
+            <circle cx="110" cy="70" r="5" fill="#D5AA54"/>
+            <circle cx="190" cy="30" r="5" fill="#D5AA54"/>
+            <circle cx="270" cy="0" r="5" fill="#D5AA54"/>
+          </g>
+          <g transform="translate(300 210)">
+            <circle cx="0" cy="0" r="26" fill="#145C43"/>
+            <circle cx="-32" cy="16" r="22" fill="#23845B"/>
+            <circle cx="32" cy="16" r="22" fill="#D5AA54" opacity=".85"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Produk &amp; Layanan</h2>
+          <p>Pilihan produk simpanan dan pinjaman yang dapat disesuaikan dengan kebutuhan finansial Anda dan keluarga.</p>
+        </div>
+        <a href="#produk" class="section-link">Lihat Semua Produk →</a>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-head"><span class="chip">Simpanan</span><span class="highlight">4% per Tahun</span></div>
+          <h3 class="card-title">SiBuhar Umum</h3>
+          <p class="card-desc">Produk simpanan yang terbuka bagi masyarakat umum tanpa memandang usia, sesuai untuk membangun kebiasaan menabung sejak dini.</p>
+          <div class="card-actions">
+            <a href="#produk/sibuhar-umum" class="btn btn-outline btn-sm">Lihat Detail</a>
+            <a href="#daftar?product=sibuhar-umum" class="btn btn-primary btn-sm">Ajukan Minat</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="chip">Simpanan</span><span class="highlight">6% per Tahun</span></div>
+          <h3 class="card-title">SiBuhar Anggota</h3>
+          <p class="card-desc">Produk simpanan khusus anggota KSU Tri Guna Bhakti dengan manfaat simpanan yang dapat mendukung kebutuhan finansial anggota.</p>
+          <div class="card-actions">
+            <a href="#produk/sibuhar-anggota" class="btn btn-outline btn-sm">Lihat Detail</a>
+            <a href="#daftar?product=sibuhar-anggota" class="btn btn-primary btn-sm">Ajukan Minat</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="chip">Simpanan</span><span class="highlight">Simpanan Berjangka</span></div>
+          <h3 class="card-title">Simpanan Deposito</h3>
+          <p class="card-desc">Pilihan simpanan berjangka bagi masyarakat yang ingin merencanakan keuangan secara lebih terarah.</p>
+          <div class="card-actions">
+            <a href="#produk/simpanan-deposito" class="btn btn-outline btn-sm">Lihat Detail</a>
+            <a href="#daftar?product=simpanan-deposito" class="btn btn-primary btn-sm">Ajukan Minat</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="chip">Pinjaman</span><span class="highlight">&lt; Rp1.000.000</span></div>
+          <h3 class="card-title">Pinjaman Umum</h3>
+          <p class="card-desc">Solusi pinjaman untuk kebutuhan finansial dengan nominal pinjaman di bawah Rp1.000.000.</p>
+          <div class="card-actions">
+            <a href="#produk/pinjaman-umum" class="btn btn-outline btn-sm">Lihat Detail</a>
+            <a href="#daftar?product=pinjaman-umum" class="btn btn-primary btn-sm">Ajukan Minat</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-head"><span class="chip">Pinjaman</span><span class="highlight">&gt; Rp1.000.000</span></div>
+          <h3 class="card-title">Pinjaman Khusus</h3>
+          <p class="card-desc">Fasilitas pinjaman dengan nominal di atas Rp1.000.000 untuk memenuhi kebutuhan finansial anggota.</p>
+          <div class="card-actions">
+            <a href="#produk/pinjaman-khusus" class="btn btn-outline btn-sm">Lihat Detail</a>
+            <a href="#daftar?product=pinjaman-khusus" class="btn btn-primary btn-sm">Ajukan Minat</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-alt">
+    <div class="container">
+      <div style="display:grid; gap:2rem; align-items:center" class="two-col-about">
+        <div>
+          <h2>Mengenal KSU Tri Guna Bhakti</h2>
+          <p style="margin-top:.75rem; color:rgba(37,49,43,.7); font-size:.92rem">
+            Koperasi Serba Usaha Tri Guna Bhakti merupakan koperasi yang menyediakan layanan simpanan dan pinjaman untuk mendukung kebutuhan finansial masyarakat dan anggota koperasi, dengan mengedepankan semangat kebersamaan dan kesejahteraan bersama.
+          </p>
+          <a href="#tentang" class="btn btn-outline" style="margin-top:.75rem">Kenali Kami Lebih Dekat</a>
+        </div>
+        <div style="background:rgba(20,92,67,.04); padding:1.5rem; border-radius:16px">
+          <h3 style="font-size:.85rem; color:var(--primary); margin-bottom:.75rem">Nilai Inti</h3>
+          <ul style="list-style:none; padding:0; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:.4rem; font-size:.85rem; color:rgba(37,49,43,.8)">
+            <li>◆ Kepercayaan</li>
+            <li>◆ Kebersamaan</li>
+            <li>◆ Transparansi</li>
+            <li>◆ Profesionalisme</li>
+            <li>◆ Pelayanan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Mengapa Memilih Kami</h2>
+          <p>Nilai dan layanan yang menjadi landasan KSU Tri Guna Bhakti.</p>
+        </div>
+      </div>
+      <div class="grid-4">
+        <div class="value-card">
+          <div class="value-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Pelayanan yang Mengutamakan Anggota</h3>
+          <p>Layanan simpanan dan pinjaman dirancang untuk mendukung kebutuhan finansial anggota dan masyarakat.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Pilihan Produk Simpanan</h3>
+          <p>Tersedia beberapa produk simpanan untuk membantu membangun kebiasaan menabung dan merencanakan keuangan.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Solusi Pinjaman</h3>
+          <p>Tersedia pilihan pinjaman umum dan khusus untuk berbagai kebutuhan finansial sesuai ketentuan koperasi.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Semangat Kebersamaan</h3>
+          <p>Koperasi dibangun atas semangat kebersamaan dan kesejahteraan bersama anggota.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Berita &amp; Pengumuman</h2>
+          <p>Informasi terbaru seputar kegiatan, pengumuman, dan edukasi keuangan dari koperasi.</p>
+        </div>
+        <a href="#berita" class="section-link">Lihat Semua Berita →</a>
+      </div>
+      <div class="empty-state">
+        <strong>Belum ada berita yang dipublikasikan.</strong> Setelah pengurus mempublikasikan artikel melalui panel admin, artikel terbaru akan tampil di sini.
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container max-w-3xl">
+      <div class="section-head">
+        <div>
+          <h2>Pertanyaan yang Sering Diajukan</h2>
+          <p>Temukan jawaban atas pertanyaan umum seputar layanan KSU Tri Guna Bhakti.</p>
+        </div>
+      </div>
+      <div class="empty-state">
+        <strong>Daftar FAQ sedang disiapkan oleh pengurus.</strong> Jawaban akan dipublikasikan setelah diverifikasi. <a href="#faq">Lihat daftar pertanyaan yang akan tersedia →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="final-cta">
+        <h2>Mulai Langkah Finansial Anda Bersama KSU Tri Guna Bhakti</h2>
+        <div class="hero-ctas">
+          <a href="#daftar" class="btn btn-accent">Daftar Sekarang</a>
+          <a href="#kontak" class="btn btn-ghost">Hubungi Kami</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-produk" hidden>
+  <div class="container" style="padding-top:2.5rem; padding-bottom:3rem">
+    <nav class="breadcrumbs"><a href="#beranda">Beranda</a><span>/</span>Produk</nav>
+    <h1>Produk &amp; Layanan</h1>
+    <p style="margin-top:.75rem; max-width:38rem; color:rgba(37,49,43,.7)">
+      Pilihan produk simpanan dan pinjaman dari KSU Tri Guna Bhakti. Hubungi kantor koperasi untuk informasi tenor, biaya, dan persyaratan yang berlaku.
+    </p>
+
+    <h2 style="margin-top:2.5rem; font-size:1.25rem">Produk Simpanan</h2>
+    <div class="grid-3" style="margin-top:1rem">
+      <article class="card">
+        <div class="card-head"><span class="chip">Simpanan</span><span class="highlight">4% per Tahun</span></div>
+        <h3 class="card-title">SiBuhar Umum</h3>
+        <p class="card-desc">Produk simpanan yang terbuka bagi masyarakat umum tanpa memandang usia, sesuai untuk membangun kebiasaan menabung sejak dini.</p>
+        <div class="card-actions">
+          <a href="#produk/sibuhar-umum" class="btn btn-outline btn-sm">Lihat Detail</a>
+          <a href="#daftar?product=sibuhar-umum" class="btn btn-primary btn-sm">Ajukan Minat</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-head"><span class="chip">Simpanan</span><span class="highlight">6% per Tahun</span></div>
+        <h3 class="card-title">SiBuhar Anggota</h3>
+        <p class="card-desc">Produk simpanan khusus anggota KSU Tri Guna Bhakti dengan manfaat simpanan yang dapat mendukung kebutuhan finansial anggota.</p>
+        <div class="card-actions">
+          <a href="#produk/sibuhar-anggota" class="btn btn-outline btn-sm">Lihat Detail</a>
+          <a href="#daftar?product=sibuhar-anggota" class="btn btn-primary btn-sm">Ajukan Minat</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-head"><span class="chip">Simpanan</span><span class="highlight">Simpanan Berjangka</span></div>
+        <h3 class="card-title">Simpanan Deposito</h3>
+        <p class="card-desc">Pilihan simpanan berjangka bagi masyarakat yang ingin merencanakan keuangan secara lebih terarah.</p>
+        <div class="card-actions">
+          <a href="#produk/simpanan-deposito" class="btn btn-outline btn-sm">Lihat Detail</a>
+          <a href="#daftar?product=simpanan-deposito" class="btn btn-primary btn-sm">Ajukan Minat</a>
+        </div>
+      </article>
+    </div>
+
+    <h2 style="margin-top:2.5rem; font-size:1.25rem">Produk Pinjaman</h2>
+    <div class="grid-3" style="margin-top:1rem">
+      <article class="card">
+        <div class="card-head"><span class="chip">Pinjaman</span><span class="highlight">&lt; Rp1.000.000</span></div>
+        <h3 class="card-title">Pinjaman Umum</h3>
+        <p class="card-desc">Solusi pinjaman untuk kebutuhan finansial dengan nominal pinjaman di bawah Rp1.000.000.</p>
+        <div class="card-actions">
+          <a href="#produk/pinjaman-umum" class="btn btn-outline btn-sm">Lihat Detail</a>
+          <a href="#daftar?product=pinjaman-umum" class="btn btn-primary btn-sm">Ajukan Minat</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-head"><span class="chip">Pinjaman</span><span class="highlight">&gt; Rp1.000.000</span></div>
+        <h3 class="card-title">Pinjaman Khusus</h3>
+        <p class="card-desc">Fasilitas pinjaman dengan nominal di atas Rp1.000.000 untuk memenuhi kebutuhan finansial anggota.</p>
+        <div class="card-actions">
+          <a href="#produk/pinjaman-khusus" class="btn btn-outline btn-sm">Lihat Detail</a>
+          <a href="#daftar?product=pinjaman-khusus" class="btn btn-primary btn-sm">Ajukan Minat</a>
+        </div>
+      </article>
+    </div>
+
+    <p class="disclaimer">Ketentuan, suku bunga, biaya, dan persetujuan layanan mengikuti kebijakan resmi KSU Tri Guna Bhakti. Silakan hubungi kantor koperasi untuk informasi lebih lanjut.</p>
+  </div>
+</section>
+
+<section class="page" id="page-produk-detail" hidden>
+  <div class="container max-w-4xl" style="padding-top:2.5rem; padding-bottom:3rem">
+    <nav class="breadcrumbs"><a href="#beranda">Beranda</a><span>/</span><a href="#produk">Produk</a><span>/</span><span id="pd-crumb">Detail</span></nav>
+    <div class="product-detail-chips" id="pd-chips"></div>
+    <h1 id="pd-title">Produk</h1>
+    <p id="pd-desc" style="margin-top:.75rem; color:rgba(37,49,43,.7); font-size:.92rem"></p>
+
+    <h2 style="margin-top:2rem; font-size:1.25rem">Fitur &amp; Ketentuan</h2>
+    <ul id="pd-features" class="card-features" style="margin-top:.75rem"></ul>
+
+    <p class="disclaimer">Ketentuan, suku bunga, biaya, dan persetujuan layanan mengikuti kebijakan resmi KSU Tri Guna Bhakti. Silakan hubungi kantor koperasi untuk informasi lebih lanjut.</p>
+
+    <div class="hero-ctas">
+      <a id="pd-cta" href="#daftar" class="btn btn-primary">Ajukan Minat</a>
+      <a href="#kontak" class="btn btn-outline">Hubungi Kantor</a>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-tentang" hidden>
+  <div class="container max-w-4xl" style="padding-top:2.5rem; padding-bottom:3rem">
+    <nav class="breadcrumbs"><a href="#beranda">Beranda</a><span>/</span>Tentang Kami</nav>
+    <h1>Mengenal KSU Tri Guna Bhakti</h1>
+    <p style="margin-top:.75rem; color:rgba(37,49,43,.75); font-size:.92rem">
+      Koperasi Serba Usaha Tri Guna Bhakti merupakan koperasi yang menyediakan layanan simpanan dan pinjaman untuk mendukung kebutuhan finansial masyarakat dan anggota koperasi, dengan mengedepankan semangat kebersamaan dan kesejahteraan bersama.
+    </p>
+
+    <h2 style="margin-top:2rem; font-size:1.25rem">Visi</h2>
+    <p style="margin-top:.5rem; color:rgba(37,49,43,.8)">Menjadi koperasi yang terpercaya, profesional, dan bermanfaat dalam meningkatkan kesejahteraan anggota serta masyarakat.</p>
+
+    <h2 style="margin-top:1.5rem; font-size:1.25rem">Misi</h2>
+    <ol style="margin-top:.5rem; padding-left:1.25rem; color:rgba(37,49,43,.8); font-size:.92rem">
+      <li>Memberikan pelayanan simpanan dan pinjaman yang mudah, transparan, dan bertanggung jawab.</li>
+      <li>Membangun hubungan yang baik dan berkelanjutan dengan anggota.</li>
+      <li>Mengembangkan pengelolaan koperasi yang profesional dan akuntabel.</li>
+      <li>Mendukung peningkatan kesejahteraan ekonomi anggota dan masyarakat.</li>
+    </ol>
+
+    <h2 style="margin-top:1.5rem; font-size:1.25rem">Nilai Inti</h2>
+    <ul style="margin-top:.75rem; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:.5rem">
+      <li class="chip">Kepercayaan</li>
+      <li class="chip">Kebersamaan</li>
+      <li class="chip">Transparansi</li>
+      <li class="chip">Profesionalisme</li>
+      <li class="chip">Pelayanan</li>
+    </ul>
+
+    <h2 style="margin-top:2rem; font-size:1.25rem">Struktur Organisasi</h2>
+    <p style="margin-top:.5rem; font-size:.82rem; color:rgba(37,49,43,.6)">
+      Struktur berikut merupakan kerangka yang dapat diperbarui oleh pengurus melalui panel admin. Nama personel akan ditampilkan setelah diisi dan dikonfirmasi oleh pengurus.
+    </p>
+
+    <div class="org-tree">
+      <div class="org-node"><div class="title">Rapat Anggota</div><div class="name">(personel belum diisi)</div></div>
+      <div class="org-children">
+        <div class="org-node"><div class="title">Pengurus</div><div class="name">(personel belum diisi)</div></div>
+        <div class="org-children">
+          <div class="org-node"><div class="title">Ketua</div><div class="name">(personel belum diisi)</div></div>
+          <div class="org-node"><div class="title">Sekretaris</div><div class="name">(personel belum diisi)</div></div>
+          <div class="org-node"><div class="title">Bendahara</div><div class="name">(personel belum diisi)</div></div>
+        </div>
+        <div class="org-node"><div class="title">Pengawas</div><div class="name">(personel belum diisi)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-berita" hidden>
+  <div class="container max-w-4xl" style="padding-top:2.5rem; padding-bottom:3rem">
+    <nav class="breadcrumbs"><a href="#beranda">Beranda</a><span>/</span>Berita &amp; Pengumuman</nav>
+    <h1>Berita &amp; Pengumuman</h1>
+    <p style="margin-top:.75rem; color:rgba(37,49,43,.7)">
+      Informasi terbaru seputar kegiatan, pengumuman, dan edukasi keuangan dari KSU Tri Guna Bhakti.
+    </p>
+
+    <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.5rem">
+      <span class="chip" style="background:var(--primary); color:#fff">Semua</span>
+      <span class="chip">Berita Koperasi</span>
+      <span class="chip">Pengumuman</span>
+      <span class="chip">Kegiatan</span>
+      <span class="chip">Edukasi Keuangan</span>
+    </div>
+
+    <div class="empty-state" style="margin-top:1.5rem">
+      <strong>Belum ada artikel yang dipublikasikan.</strong> Setelah pengurus mempublikasikan artikel melalui panel admin, artikel akan tampil di sini dengan kategori dan tanggal publikasi.
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-faq" hidden>
+  <div class="container max-w-3xl" style="padding-top:2.5rem; padding-bottom:3rem">
+    <nav class="breadcrumbs"><a href="#beranda">Beranda</a><span>/</span>FAQ</nav>
+    <h1>Pertanyaan yang Sering Diajukan</h1>
+    <p style="margin-top:.75rem; color:rgba(37,49,43,.7)">
+      Jawaban berikut disediakan oleh pengurus KSU Tri Guna Bhakti. Jika pertanyaan Anda belum terjawab, silakan hubungi kantor koperasi.
+    </p>
+
+    <div class="disclaimer" style="margin-top:1.5rem">
+      <strong>Catatan preview:</strong> jawaban FAQ belum dipublikasikan oleh pengurus. Daftar pertanyaan di bawah adalah draft yang akan tersedia di sistem. Jawaban hanya akan ditampilkan setelah diverifikasi oleh pengurus koperasi — tidak ada jawaban yang dikarang untuk pratinjau ini.
+    </div>
+
+    <div class="faq-list" style="margin-top:1.5rem">
+      <details class="faq-item">
+        <summary>Apa itu KSU Tri Guna Bhakti?</summary>
+        <div class="faq-answer">Jawaban sedang disiapkan oleh pengurus koperasi.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Siapa saja yang dapat membuka Simpanan SiBuhar Umum?</summary>
+        <div class="faq-answer">Jawaban sedang disiapkan oleh pengurus koperasi.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Apa perbedaan SiBuhar Umum dan SiBuhar Anggota?</summary>
+        <div class="faq-answer">Jawaban sedang disiapkan oleh pengurus koperasi.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Bagaimana cara membuka simpanan deposito?</summary>
+        <div class="faq-answer">Jawaban sedang disiapkan oleh pengurus koperasi.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Bagaimana cara mengajukan pinjaman?</summary>
+        <div class="faq-answer">Jawaban sedang disiapkan oleh pengurus koperasi.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Apa saja jenis jaminan untuk Pinjaman Khusus?</summary>
+        <div class="faq-answer">Jawaban sedang disiapkan oleh pengurus koperasi.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Di mana lokasi kantor KSU Tri Guna Bhakti?</summary>
+        <div class="faq-answer">Jawaban sedang disiapkan oleh pengurus koperasi.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Bagaimana cara menghubungi koperasi?</summary>
+        <div class="faq-answer">Jawaban sedang disiapkan oleh pengurus koperasi.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-kontak" hidden>
+  <div class="container max-w-4xl" style="padding-top:2.5rem; padding-bottom:3rem">
+    <nav class="breadcrumbs"><a href="#beranda">Beranda</a><span>/</span>Kontak</nav>
+    <h1>Hubungi Kami</h1>
+    <p style="margin-top:.75rem; max-width:38rem; color:rgba(37,49,43,.7)">
+      Silakan hubungi kantor KSU Tri Guna Bhakti melalui salah satu kanal di bawah ini. Tim kami akan membantu Anda dengan senang hati.
+    </p>
+
+    <div style="display:grid; gap:1rem; margin-top:2rem; grid-template-columns:1fr">
+      <div style="display:grid; gap:1rem" class="contact-grid">
+        <div class="info-block">
+          <h3>Alamat Kantor</h3>
+          <address>Ruko Niaga, Jl. Kacapiring No.1, Sukorejo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117</address>
+          <a href="https://www.google.com/maps/search/?api=1&query=Ruko+Niaga+Jl.+Kacapiring+No.1+Sukorejo+Kepanjenkidul+Blitar" target="_blank" rel="noopener" style="display:inline-block; margin-top:.75rem; font-size:.83rem; font-weight:500">Petunjuk Arah →</a>
+        </div>
+
+        <div class="info-block">
+          <h3>Jam Operasional</h3>
+          <div class="hours">
+            <div><span>Senin</span><span>08.00–16.00</span></div>
+            <div><span>Selasa</span><span>08.00–16.00</span></div>
+            <div><span>Rabu</span><span>08.00–16.00</span></div>
+            <div><span>Kamis</span><span>08.00–16.00</span></div>
+            <div><span>Jumat</span><span>08.00–16.00</span></div>
+            <div><span>Sabtu</span><span>Tutup</span></div>
+            <div><span>Minggu</span><span>Tutup</span></div>
+          </div>
+        </div>
+
+        <div class="info-block" style="grid-column:1/-1">
+          <h3>Kanal Komunikasi</h3>
+          <p style="font-size:.88rem; color:rgba(37,49,43,.7)">
+            Nomor WhatsApp, telepon, dan email resmi akan diisi oleh pengurus melalui panel admin. Setelah dikonfigurasi, tombol WhatsApp akan muncul di seluruh halaman situs publik.
+          </p>
+          <div class="wa-placeholder">Belum dikonfigurasi pada preview statis.</div>
+        </div>
+
+        <div class="info-block" style="grid-column:1/-1; padding:.5rem">
+          <div style="aspect-ratio:16/9; border-radius:12px; background:rgba(20,92,67,.06); display:flex; align-items:center; justify-content:center; text-align:center; padding:1rem; color:rgba(37,49,43,.6); font-size:.85rem">
+            Peta Google akan ditampilkan di sini pada situs produksi, menggunakan alamat kantor di atas.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-daftar" hidden>
+  <div class="container max-w-3xl" style="padding-top:2.5rem; padding-bottom:3rem">
+    <nav class="breadcrumbs"><a href="#beranda">Beranda</a><span>/</span>Pendaftaran</nav>
+    <h1>Mulai Bergabung Bersama Kami</h1>
+    <p style="margin-top:.75rem; color:rgba(37,49,43,.7)">
+      Lengkapi formulir berikut dan tim KSU Tri Guna Bhakti akan menghubungi Anda untuk memberikan informasi lebih lanjut.
+    </p>
+
+    <div class="disclaimer" style="margin-top:1rem">
+      <strong>Mode preview:</strong> formulir ini tidak mengirim data ke server mana pun. Menekan "Kirim Pendaftaran" hanya akan menampilkan kode referensi contoh. Pada situs produksi, data akan disimpan ke database dan masuk ke panel admin.
+    </div>
+
+    <form class="form" id="previewForm" novalidate>
+      <div class="form-error" id="formError" role="alert"></div>
+
+      <div class="form-group">
+        <label for="f-name">Nama Lengkap <span class="req">*</span></label>
+        <input id="f-name" name="name" type="text" required minlength="2" maxlength="100" autocomplete="name">
+      </div>
+
+      <div class="form-row two">
+        <div class="form-group">
+          <label for="f-phone">Nomor Telepon / WhatsApp</label>
+          <input id="f-phone" name="phone" type="tel" maxlength="30" autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" maxlength="200" autocomplete="email">
+        </div>
+      </div>
+      <p class="form-hint" style="margin-top:-.5rem; margin-bottom:1rem">Minimal salah satu dari telepon atau email harus diisi.</p>
+
+      <div class="form-group">
+        <label for="f-product">Produk yang Diminati <span class="req">*</span></label>
+        <select id="f-product" name="product" required>
+          <option value="">— Pilih produk —</option>
+          <option value="sibuhar-umum">Simpanan SiBuhar Umum</option>
+          <option value="sibuhar-anggota">Simpanan SiBuhar Anggota</option>
+          <option value="simpanan-deposito">Simpanan Deposito</option>
+          <option value="pinjaman-umum">Pinjaman Umum</option>
+          <option value="pinjaman-khusus">Pinjaman Khusus</option>
+          <option value="all">Ingin mengetahui semua produk</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="f-reason">Alasan / Kebutuhan</label>
+        <textarea id="f-reason" name="reason" rows="4" maxlength="2000"></textarea>
+      </div>
+
+      <label class="form-check">
+        <input type="checkbox" id="f-consent" name="consent" required>
+        <span>Saya menyetujui penggunaan data pribadi yang saya berikan untuk keperluan komunikasi dan tindak lanjut informasi produk KSU Tri Guna Bhakti sesuai <a href="#privasi">kebijakan privasi</a>.</span>
+      </label>
+
+      <button type="submit" class="btn btn-primary" style="width:100%">Kirim Pendaftaran</button>
+    </form>
+
+    <div id="formSuccess" style="display:none; margin-top:1.5rem">
+      <div class="form-success">
+        <h3>Terima kasih!</h3>
+        <p>Pada situs produksi, permintaan Anda akan diterima oleh tim KSU Tri Guna Bhakti dan ditindaklanjuti melalui kontak yang Anda berikan.</p>
+        <p><strong>Kode referensi contoh:</strong><br><span class="code" id="successCode">TGB-00000000-0000</span></p>
+        <p style="font-size:.8rem; opacity:.7">Kode ini hanya simulasi untuk preview statis. Tidak ada data yang benar-benar tersimpan.</p>
+        <button type="button" class="btn btn-outline btn-sm" style="margin-top:.75rem" onclick="resetPreviewForm()">Kirim formulir lain</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-privasi" hidden>
+  <div class="container max-w-3xl" style="padding-top:2.5rem; padding-bottom:3rem">
+    <nav class="breadcrumbs"><a href="#beranda">Beranda</a><span>/</span>Kebijakan Privasi</nav>
+    <h1>Kebijakan Privasi</h1>
+    <p style="margin-top:.5rem; font-size:.8rem; color:rgba(37,49,43,.5)">Dokumen contoh untuk preview. Pengurus dapat memperbarui isi melalui panel admin.</p>
+
+    <div class="prose" style="margin-top:1.5rem">
+      <p>Kebijakan Privasi ini menjelaskan bagaimana KSU Tri Guna Bhakti mengumpulkan, menggunakan, dan melindungi data pribadi yang Anda berikan melalui formulir pendaftaran dan kanal kontak di situs ini.</p>
+
+      <h2>1. Informasi yang Dikumpulkan</h2>
+      <ul>
+        <li>Nama lengkap, nomor telepon/WhatsApp, dan alamat email.</li>
+        <li>Produk yang diminati dan alasan/kebutuhan yang Anda sampaikan secara sukarela.</li>
+      </ul>
+
+      <h2>2. Tujuan Pengumpulan</h2>
+      <ul>
+        <li>Menindaklanjuti permintaan informasi produk simpanan dan pinjaman.</li>
+        <li>Menghubungi Anda kembali melalui kanal yang Anda berikan.</li>
+      </ul>
+
+      <h2>3. Penggunaan Data</h2>
+      <ul>
+        <li>Data hanya digunakan untuk komunikasi dan tindak lanjut informasi produk.</li>
+        <li>Data tidak dijual atau dibagikan kepada pihak ketiga untuk tujuan pemasaran.</li>
+      </ul>
+
+      <h2>4. Akses Data</h2>
+      <ul>
+        <li>Hanya pengurus dan staf berwenang yang dapat mengakses data yang Anda kirimkan.</li>
+        <li>Data tidak ditampilkan di halaman publik.</li>
+      </ul>
+
+      <h2>5. Koreksi dan Penghapusan</h2>
+      <ul>
+        <li>Anda dapat meminta koreksi atau penghapusan data dengan menghubungi kantor koperasi melalui kanal resmi yang tercantum di halaman Kontak.</li>
+      </ul>
+
+      <p>Dokumen ini dapat diperbarui sewaktu-waktu. Perubahan akan dipublikasikan pada halaman ini.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:.75rem">
+          <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true">
+            <circle cx="20" cy="20" r="19" fill="#145C43"/>
+            <circle cx="20" cy="20" r="13.5" fill="none" stroke="#D5AA54" stroke-width="1.6"/>
+            <path d="M13 26c0-4 3-7 7-7s7 3 7 7" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="20" cy="15" r="3.2" fill="#fff"/>
+          </svg>
+          <span>KSU Tri Guna Bhakti</span>
+        </div>
+        <p style="font-size:.83rem; color:rgba(37,49,43,.68); line-height:1.55">
+          Koperasi yang menyediakan layanan simpanan dan pinjaman untuk mendukung kebutuhan finansial masyarakat dan anggota koperasi.
+        </p>
+      </div>
+
+      <div>
+        <h3>Navigasi</h3>
+        <ul>
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#tentang">Tentang Kami</a></li>
+          <li><a href="#berita">Berita &amp; Pengumuman</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+          <li><a href="#privasi">Kebijakan Privasi</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Produk</h3>
+        <ul>
+          <li><a href="#produk/sibuhar-umum">SiBuhar Umum</a></li>
+          <li><a href="#produk/sibuhar-anggota">SiBuhar Anggota</a></li>
+          <li><a href="#produk/simpanan-deposito">Simpanan Deposito</a></li>
+          <li><a href="#produk/pinjaman-umum">Pinjaman Umum</a></li>
+          <li><a href="#produk/pinjaman-khusus">Pinjaman Khusus</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Kantor</h3>
+        <address class="footer-address">Ruko Niaga, Jl. Kacapiring No.1, Sukorejo, Kec. Kepanjenkidul, Kota Blitar, Jawa Timur 66117</address>
+        <ul class="footer-hours">
+          <li><span>Senin</span><span>08.00–16.00</span></li>
+          <li><span>Selasa</span><span>08.00–16.00</span></li>
+          <li><span>Rabu</span><span>08.00–16.00</span></li>
+          <li><span>Kamis</span><span>08.00–16.00</span></li>
+          <li><span>Jumat</span><span>08.00–16.00</span></li>
+          <li><span>Sabtu</span><span>Tutup</span></li>
+          <li><span>Minggu</span><span>Tutup</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 KSU Tri Guna Bhakti. Seluruh Hak Cipta Dilindungi.</p>
+      <p><a href="#privasi">Kebijakan Privasi</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const PRODUCTS = {
+    'sibuhar-umum': {
+      name: 'SiBuhar Umum',
+      category: 'Simpanan',
+      highlight: '4% per Tahun',
+      description: 'Produk simpanan yang terbuka bagi masyarakat umum tanpa memandang usia, sesuai untuk membangun kebiasaan menabung sejak dini.',
+      features: [
+        'Terbuka untuk masyarakat umum.',
+        'Setoran tanpa batas sesuai ketentuan koperasi.',
+        'Bunga 4% per tahun.',
+        'Tanpa potongan biaya administrasi bulanan.',
+        'Ketentuan perpajakan mengikuti kebijakan resmi koperasi.'
+      ]
+    },
+    'sibuhar-anggota': {
+      name: 'SiBuhar Anggota',
+      category: 'Simpanan',
+      highlight: '6% per Tahun',
+      description: 'Produk simpanan khusus anggota KSU Tri Guna Bhakti dengan manfaat simpanan yang dapat mendukung kebutuhan finansial anggota.',
+      features: [
+        'Khusus anggota koperasi.',
+        'Bunga 6% per tahun.',
+        'Dapat digunakan sebagai agunan pinjaman pada koperasi sendiri sesuai ketentuan.'
+      ]
+    },
+    'simpanan-deposito': {
+      name: 'Simpanan Deposito',
+      category: 'Simpanan',
+      highlight: 'Simpanan Berjangka',
+      description: 'Pilihan simpanan berjangka bagi masyarakat yang ingin merencanakan keuangan secara lebih terarah.',
+      features: [
+        'Produk simpanan berjangka.',
+        'Tingkat bunga kompetitif.',
+        'Informasi tenor dan ketentuan dapat diperoleh langsung melalui kantor koperasi.'
+      ]
+    },
+    'pinjaman-umum': {
+      name: 'Pinjaman Umum',
+      category: 'Pinjaman',
+      highlight: '< Rp1.000.000',
+      description: 'Solusi pinjaman untuk kebutuhan finansial dengan nominal pinjaman di bawah Rp1.000.000.',
+      features: [
+        'Pinjaman di bawah Rp1.000.000.',
+        'Suku bunga mengikuti ketentuan koperasi.',
+        'Tanpa jaminan.'
+      ]
+    },
+    'pinjaman-khusus': {
+      name: 'Pinjaman Khusus',
+      category: 'Pinjaman',
+      highlight: '> Rp1.000.000',
+      description: 'Fasilitas pinjaman dengan nominal di atas Rp1.000.000 untuk memenuhi kebutuhan finansial anggota.',
+      features: [
+        'Pinjaman di atas Rp1.000.000.',
+        'Suku bunga kompetitif.',
+        'Jaminan dapat berupa saham anggota, BPKB kendaraan bermotor, atau sertifikat tanah.'
+      ]
+    }
+  };
+
+  const PAGE_IDS = ['beranda','produk','produk-detail','tentang','berita','faq','kontak','daftar','privasi'];
+
+  function showPage(id) {
+    PAGE_IDS.forEach(function(pid){
+      var el = document.getElementById('page-' + pid);
+      if (el) el.hidden = (pid !== id);
+    });
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+
+  function updateNav(activeName) {
+    document.querySelectorAll('[data-nav]').forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('data-nav') === activeName);
+    });
+  }
+
+  function renderProductDetail(slug) {
+    var p = PRODUCTS[slug];
+    if (!p) { location.hash = '#produk'; return; }
+    document.getElementById('pd-crumb').textContent = p.name;
+    document.getElementById('pd-title').textContent = p.name;
+    document.getElementById('pd-desc').textContent = p.description;
+
+    var chips = document.getElementById('pd-chips');
+    chips.innerHTML = '';
+    var c1 = document.createElement('span');
+    c1.className = 'chip'; c1.textContent = p.category;
+    chips.appendChild(c1);
+    if (p.highlight) {
+      var c2 = document.createElement('span');
+      c2.className = 'highlight'; c2.textContent = p.highlight;
+      chips.appendChild(c2);
+    }
+
+    var ul = document.getElementById('pd-features');
+    ul.innerHTML = '';
+    p.features.forEach(function(f){
+      var li = document.createElement('li');
+      li.textContent = f;
+      ul.appendChild(li);
+    });
+
+    document.getElementById('pd-cta').setAttribute('href', '#daftar?product=' + slug);
+  }
+
+  function route() {
+    var hash = location.hash.replace('#','') || 'beranda';
+    var parts = hash.split('?');
+    var routeName = parts[0];
+    var query = new URLSearchParams(parts[1] || '');
+
+    PAGE_IDS.forEach(function(pid){
+      var el = document.getElementById('page-' + pid);
+      if (el) el.hidden = true;
+    });
+
+    if (routeName === 'produk') {
+      showPage('produk'); updateNav('produk');
+    } else if (routeName.startsWith('produk/')) {
+      var slug = routeName.split('/')[1];
+      renderProductDetail(slug);
+      showPage('produk-detail'); updateNav('produk');
+    } else if (routeName === 'daftar') {
+      var productSlug = query.get('product');
+      if (productSlug) {
+        var sel = document.getElementById('f-product');
+        if (sel) sel.value = productSlug;
+      }
+      showPage('daftar'); updateNav('daftar');
+    } else if (['tentang','berita','faq','kontak','privasi'].indexOf(routeName) !== -1) {
+      showPage(routeName); updateNav(routeName);
+    } else {
+      showPage('beranda'); updateNav('beranda');
+    }
+
+    var mm = document.getElementById('mobileMenu');
+    if (mm) mm.classList.remove('open');
+    var mb = document.getElementById('menuBtn');
+    if (mb) mb.setAttribute('aria-expanded', 'false');
+  }
+
+  window.addEventListener('hashchange', route);
+  window.addEventListener('DOMContentLoaded', route);
+
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', function(){
+      var open = mobileMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
+  var form = document.getElementById('previewForm');
+  var errEl = document.getElementById('formError');
+  var successEl = document.getElementById('formSuccess');
+
+  window.resetPreviewForm = function() {
+    if (form) form.style.display = 'block';
+    if (successEl) successEl.style.display = 'none';
+    if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
+    if (form) form.reset();
+  };
+
+  if (form) {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
+
+      var name = (document.getElementById('f-name').value || '').trim();
+      var phone = (document.getElementById('f-phone').value || '').trim();
+      var email = (document.getElementById('f-email').value || '').trim();
+      var product = document.getElementById('f-product').value;
+      var consent = document.getElementById('f-consent').checked;
+
+      function showErr(msg) {
+        if (errEl) { errEl.textContent = msg; errEl.style.display = 'block'; }
+      }
+
+      if (name.length < 2) { showErr('Nama lengkap wajib diisi minimal 2 karakter.'); return; }
+      if (!phone && !email) { showErr('Minimal salah satu kontak (telepon atau email) harus diisi.'); return; }
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('Format email tidak valid.'); return; }
+      if (!product) { showErr('Silakan pilih produk yang diminati.'); return; }
+      if (!consent) { showErr('Anda perlu menyetujui penggunaan data untuk melanjutkan.'); return; }
+
+      var d = new Date();
+      var y = d.getFullYear();
+      var m = String(d.getMonth() + 1).padStart(2, '0');
+      var day = String(d.getDate()).padStart(2, '0');
+      var rnd = String(Math.floor(1000 + Math.random() * 9000));
+      var code = 'TGB-' + y + m + day + '-' + rnd;
+
+      var codeEl = document.getElementById('successCode');
+      if (codeEl) codeEl.textContent = code;
+
+      form.style.display = 'none';
+      if (successEl) successEl.style.display = 'block';
+      successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
+</script>
+
+<style>
+  @media (min-width:768px){
+    .two-col-about{grid-template-columns:1.1fr 1fr}
+    .contact-grid{grid-template-columns:1fr 1fr}
+  }
+</style>
+
+</body>
+</html>
